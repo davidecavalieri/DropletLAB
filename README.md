@@ -3,7 +3,7 @@
 ## How to install
 You can download the latest version of the repository from the GitHub page. The DropletLAB suite is self-contained; no additional packages are needed to proceed with the installation.
 ```bash
-git clone 
+git clone https://github.com/davidecavalieri/DropletLAB.git
 ```
 
 # How to use it
