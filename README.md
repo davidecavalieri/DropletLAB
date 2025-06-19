@@ -1,5 +1,8 @@
 # DropletLAB
 
+# How to install
+You can download the latest version of the repository from the GitHub page. The DropletLAB suite is self-contained; no additional packages are needed to proceed with the installation.
+
 
 # How to use it
 
