@@ -1,3 +1,4 @@
+
 # DropletLAB
 
 ## How to install
@@ -12,7 +13,7 @@ The examples folder contains a main launcher that enables the simulation of the 
 
 ## How to cite
 
-The developed method is flexible and ready to use in other platforms or Computational Fluid Dynamics codes. When you are using this framework to publish paper, please kindly consider
+The developed method is flexible and ready to use in other platforms or Computational Fluid Dynamics codes. When you are using this framework to publish paper, please kindly consider to cite the following papers:
 
 [1] Cavalieri, D., Liberatori, J., Blandino, M. et al. Evaluation of Non-ideal Fluid Modeling for Droplet Evaporation in Jet-Engine-Like Conditions. Flow Turbulence Combust 114, 857–885 (2025). https://doi.org/10.1007/s10494-024-00610-x
 
