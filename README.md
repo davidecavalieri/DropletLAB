@@ -8,6 +8,8 @@ git clone https://github.com/davidecavalieri/DropletLAB.git
 ```
 ## How to use it
 
+The examples folder contains a main launcher that enables the simulation of the evaporation process of a JET-C1 single-droplet.
+
 ## How to cite
 
 The developed method is flexible and ready to use in other platforms or Computational Fluid Dynamics codes. When you are using this framework to publish paper, please kindly consider
