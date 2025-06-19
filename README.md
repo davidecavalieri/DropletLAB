@@ -8,7 +8,7 @@ git clone https://github.com/davidecavalieri/DropletLAB.git
 ```
 ## How to use it
 
-The examples folder contains a main launcher that enables the simulation of the evaporation process of a JET-C1 single-droplet.
+The examples folder contains a main launcher that enables the simulation of the evaporation process of a Jet-C1 single droplet.
 
 ## How to cite
 
