@@ -149,11 +149,13 @@ while true
         w_red = expandStateVector(w(end,:), activeComponents);
         Droplet = Droplet(activeComponents);
         Yvi_inf = Yvi_inf(activeComponents);
+        % Update active components
+        activeComponents = 1:numel(Droplet);
         % Set event options for both component depletion and droplet shrinkage
         options = odeset('Events', @(t, w_red) combinedEvents(t, w_red, d0, Droplet, Pamb, liquidRho, liquidCp, EoS, min_fraction), ...
             'OutputFcn', @(t, w_red, flag) store_diameter(t, w_red, flag, Droplet, liquidRho, liquidCp, Pamb, EoS), ...
             'RelTol', 1e-12, 'AbsTol', ones(numel(Yvi_inf) + 1, 1) * 1e-12);
-        [t1, w1, te, we, ie] = ode45(@(t, w_red) evaporation_multi(t, w_red, activeComponents, ...
+        [t1, w1, te, we, ie] = ode15s(@(t, w_red) evaporation_multi(t, w_red, activeComponents, ...
             Droplet, Ambient, liquidRho, liquidCp, SatPressure, vapEnthalpy, ...
             Pamb, Tamb, VLE, Ar, EoS, DiffusionModel, EffectiveDiffusionModel, StefanFlow, AbramzonSirignano, NaturalConvection, ...
             Yvi_inf, XviA_inf, YviA_inf, Model, ...
@@ -183,7 +185,9 @@ while true
     t_d = [t_d; t_d1];
 
     % Check which event stopped the integration
-    if ie == 2 || isempty(ie)  % Droplet shrank below 5% or no event occurred
+    if isempty(ie)  % No event occurred
+        break;
+    elseif ie == 2  % Droplet shrank below 5%
         break;
     elseif ie == 1  % A component reached the threshold molar fraction
         mdi = we(2:end);  % Extract component masses
@@ -191,7 +195,7 @@ while true
         [~, ~, Xli, ~] = getLiquidComposition(Droplet, we(2:end));
         depleted_idx = find(Xli <= min_fraction, 1);  % Find first depleted component
 
-        if length(mdi) == 1  % Only one component left
+        if isscalar(mdi)  % Only one component left
             break;
         end
 
@@ -208,6 +212,7 @@ end
 %% --- POST-PROCESSING --- %%
 
 % Diameter evolution
+figure;
 til = tiledlayout(1,1);
 til.Padding = 'none';
 til.TileSpacing = 'none';
@@ -228,6 +233,7 @@ set(axesHandle, 'FontSize', 20, 'FontName', 'Times', 'Linewidth', 1.2);
 set(gcf, 'Position', [100, 100, 550, 550/1.3991]);
 
 % Temperature evolution
+figure;
 til = tiledlayout(1,1);
 til.Padding = 'none';
 til.TileSpacing = 'none';
