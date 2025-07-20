@@ -105,6 +105,9 @@ Xli0(2) = 0.18342;
 % +++ Vapor mass fractions of liquid-phase species far away from the droplet +++ %
 Yvi_inf = zeros(1, numel(Droplet));
 
+% Create a containers.Map from liquid species names to global indices
+species_l_map = containers.Map({Droplet.Species}, 1:numel(Droplet));
+
 % +++ CREATE STRUCTURE VARIABLE FOR DROPLET AND AMBIENT +++ %
 [Droplet, Ambient] = databaseReader(Droplet, Ambient);
 
@@ -119,7 +122,9 @@ min_fraction = 1e-03; % threshold molar fraction below which one component is de
 
 % Number of components in the initial state
 Ns = length(initialConditions) - 1; % Excluding droplet temperature
-activeComponents = 1:Ns;  % Start with all components active
+% Start with all components active
+activeComponents = 1:Ns;
+active_species_names = {Droplet.Species};
 
 % Set event options for both component depletion and droplet shrinkage along with output function
 options = odeset('Events', @(t, w) combinedEvents(t, w, d0, Droplet, Pamb, liquidRho, liquidCp, EoS, min_fraction), ...
@@ -151,6 +156,7 @@ while true
         Yvi_inf = Yvi_inf(activeComponents);
         % Update active components
         activeComponents = 1:numel(Droplet);
+        active_species_names = {Droplet.Species};
         % Set event options for both component depletion and droplet shrinkage
         options = odeset('Events', @(t, w_red) combinedEvents(t, w_red, d0, Droplet, Pamb, liquidRho, liquidCp, EoS, min_fraction), ...
             'OutputFcn', @(t, w_red, flag) store_diameter(t, w_red, flag, Droplet, liquidRho, liquidCp, Pamb, EoS), ...
@@ -170,7 +176,10 @@ while true
         w_frac = w1;
     else
         w_frac(:,1) = w1(:,1);
-        w_frac(:,activeComponents + 1) =  w1(:,2:end);
+        for j = 1:length(active_species_names)
+            global_idx = species_l_map(active_species_names{j});
+            w_frac(:, global_idx + 1) = w1(:, j + 1);  % +1 for temperature offset
+        end
     end
 
     w = [w; w_frac];
