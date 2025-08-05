@@ -67,11 +67,11 @@ DiffusionModel    = 'FullerRiazi'; % options: Fuller, FullerRiazi
 %%%%%%%%%%%%%%%%%%%% EFFECTIVE DIFFUSION MODEL %%%%%%%%%%%%%%%%%%%%%%%%%
 EffectiveDiffusionModel    = 'HC'; % options: HC, Wilke
 %%%%%%%%%%%%%%%%%%%% STEFAN-FLOW CORRECTION %%%%%%%%%%%%%%%%%%%%%%%%%
-StefanFlow    = 'True';
+StefanFlow    = 'True'; % options: True, False
 %%%%%%%%%%%%%%%%%%%% ABRAMZON-SIRIGNANO HEAT AND MASS TRANSFER CORRECTIONS %%%%%%%%%%%%%%%%%%%%%%%%%
-AbramzonSirignano    = 'False';
+AbramzonSirignano    = 'False'; % options: True, False
 %%%%%%%%%%%%%%%%%%%% NATURAL CONVECTION CORRECTION %%%%%%%%%%%%%%%%%%%%%%%%
-NaturalConvection = 'on'; % 1) On; 2) Off
+NaturalConvection = 'on'; % options: on, off
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% ----- DROPLET VAPORIZATION ----- %%
@@ -261,4 +261,5 @@ axesHandle.Box = 'on';          % draws the box
 axesHandle.Layer = 'top';       % ensures axes lines are on top
 set(axesHandle, 'FontSize', 20, 'FontName', 'Times', 'Linewidth', 1.2);
 set(gcf, 'Position', [100, 100, 550, 550/1.3991]);
+
 
