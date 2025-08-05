@@ -57,7 +57,7 @@ VLE               = 'VLE-EoS'; % options: Raoult, VLE-EoS, VLE-EoS-solub
 %%%%%%%%%%%%%%%% WEIGHT COEFFICIENT FOR THE FILM LAW %%%%%%%%%%%%%%%%%%%%%%
 Ar                = 1/3;
 %%%%%%%%%%%%%%%%%%%%%%%%%%% EQUATION OF STATE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-EoS               = 'PR'; % options: PR, SRK, RKPR
+EoS               = 'PR'; % options: IdealGas, PR, SRK, RKPR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% VISCOSITY MODEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ViscosityModel    = 'Chung'; % options: Chung, Sutherland, CHEMKIN
 %%%%%%%%%%%%%%%%%%%%%%%%% CONDUCTIVITY MODEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -261,3 +261,4 @@ axesHandle.Box = 'on';          % draws the box
 axesHandle.Layer = 'top';       % ensures axes lines are on top
 set(axesHandle, 'FontSize', 20, 'FontName', 'Times', 'Linewidth', 1.2);
 set(gcf, 'Position', [100, 100, 550, 550/1.3991]);
+
