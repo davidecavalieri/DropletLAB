@@ -200,7 +200,7 @@ Pr_f = mu*cp/lambda;
 Sci_f = mu./(rho.*Di_f);
 
 % BULK SCHMIDT NUMBER
-Sc_f_bulk = mu/(rho*sum(Di_f.*Yfi));
+Sc_f_bulk = mu/(rho*(sum(Di_f.*Yfi)./sum(Yfi)));
 
 % LEWIS NUMBERS
 Lei_f = lambda./(cp.*Di_f.*rho);
